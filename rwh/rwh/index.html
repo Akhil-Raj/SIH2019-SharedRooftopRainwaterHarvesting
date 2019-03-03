@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: black;
+      height: 722px;
+
+    }
+    ul.nav li a{
+      color: grey;
+    }
+    ul.nav li a:visited{
+      color: grey;
+    }
+    ul.nav li a:active{
+      color: white;
+    }
+    ul.nav li a:hover{
+      color: black;
+      background-color: white;
+    }
+    .card{
+      border: none;
+      font-size: 1.6em; 
+      text-align: center; 
+      margin-top: 20px;
+    }
+    hr {
+      border-color: grey;
+      border-width: 1px;
+    }
+    .imgs{
+      margin-bottom: 20px;
+    }
+    .card-footer{
+      background-color: lightgrey;
+    }
+    .card-body{
+      height: 200px;
+      background-color: #1ABC9C;
+      color: white;
+      margin-bottom: 0px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="container-fluid">
+  <div class="row content">
+  
+  <div class="col-sm-2 sidenav hidden-xs" style="position: fixed; z-index: 10; padding-top: 10px;" >
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="#home" onclick="changeSpeed(event,this)">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#catchmentArea" onclick="changeSpeed(event,this)">Catchment Area Calculation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#clustering" onclick="changeSpeed(event,this)">Clustering</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#cost" onclick="changeSpeed(event,this)">Cost Analysis</a>
+      </li>
+    </ul><br>
+  </div>
+  <br>
+  </div>  
+  <div class="row content">
+    <div class="col-sm-2"></div>    
+    <div class="col-sm-10">
+      <div class="card" style="">
+        <div class="card-body" id="home">
+          Shared Rooftop Rainwater Harvesting
+        </div>
+        <div class="card-footer">
+          {% load static %}
+          <img src="{% static 'lstm.png' %}" width="500px" height="400px">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row content">
+    <div class="col-sm-2"></div>    
+    <div class="col-sm-10" id="catchmentArea">
+      <div class="card" style="border: none; font-size: 1.6em; text-align: center; margin-top: 20px">
+        <div class="card-body">
+          Catchment Area Calculation
+        </div>
+        <div class="card-footer" id="area" style="font-size: 12px">
+          {% load static %}
+          <form method="post" id="gis" enctype="multipart/form-data" action="/area/">
+            {% csrf_token %}
+            <input type="file" id="catchFile">
+            <button class="btn btn-primary" onclick="hide()"> Submit </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row content">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-5">
+      <img src="" id="catch1" class="imgs" style="display: none">
+    </div>
+    <div class="col-sm-5">
+      <img src="" id="catch2" class="imgs" style="display: none">  
+    </div> 
+  </div>
+  <hr>
+  <div class="row content">
+    <div class="col-sm-2"></div>    
+    <div class="col-sm-10" id="clustering">
+      <div class="card" style="border: none; font-size: 1.6em; text-align: center; margin-top: 20px">
+        <div class="card-body">
+          Clustering
+        </div>
+        <div class="card-footer" id="clustering_footer" style="font-size: 12px">
+          {% load static %}
+          <form method="post" id="cannyForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="cannyFile" id="cannyFile">
+            <button class="btn btn-primary" onclick="cannyDetect(event)"> Submit </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row content">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-5">
+      <img src="" id="cannyImage" class="imgs" style="display: none">
+    </div>
+    <div class="col-sm-5">
+      <img src="" id="cannyImage1" class="imgs" style="display: none">  
+    </div>
+    
+  </div>
+</div>
+<script>
+function changeSpeed(e,item) {
+  e.preventDefault();
+  var elementpos= $($(item).attr('href')).offset().top; 
+  var speed = 2000; //time, in milliseconds, for the scroll action to complete.  
+  $('html, body').animate({scrollTop: elementpos+ 'px'}, speed); //animate the scroll.
+};
+function hide(){
+  event.preventDefault();
+  var input= $("#cannyFile").val();
+  var file = input.split("\\");
+  var fileName = file[file.length-1];
+  console.log(fileName);
+  $('#gis').css("display","none");
+  $('#catch1').attr('src','static/openstreetmap2dplotFinal.png');
+  $('#catch2').attr('src','static/originalImageWithTanks.png');
+  $('#catch1').width(600);
+  $('#catch1').height(400);
+  $('#catch2').width(600);
+  $('#catch2').height(400);
+  $("#catch1").show();
+  $("#catch2").show();
+}
+
+function cannyDetect(event){
+  event.preventDefault();
+  var input= $("#cannyFile").val();
+  var file = input.split("\\");
+  var fileName = file[file.length-1];
+  console.log(fileName);
+  $.ajax(
+    {url: "canny/", 
+    type: 'GET',
+    data: {filename:fileName} ,
+    contentType: 'application/json;',
+    success: function(result){
+      $('#cannyForm').css("display","none");
+      $('#cannyImage').attr('src','static/imageToShow.png');
+      $('#cannyImage1').attr('src','static/imageToShow2.png');
+      $('#cannyImage').width(600);
+      $('#cannyImage').height(400);
+      $('#cannyImage1').width(600);
+      $('#cannyImage1').height(400);
+      $("#cannyImage").show();
+      $("#cannyImage1").show();
+    }
+  });
+  
+}
+</script>
+</body>
+</html>

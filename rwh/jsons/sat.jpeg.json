@@ -1,0 +1,64 @@
+{
+  "labelAnnotations": [
+    {
+      "mid": "/m/01w5c_",
+      "description": "Aerial photography",
+      "score": 0.98721015,
+      "topicality": 0.98721015
+    },
+    {
+      "mid": "/m/02nfxt",
+      "description": "Residential area",
+      "score": 0.9713846,
+      "topicality": 0.9713846
+    },
+    {
+      "mid": "/m/0750y",
+      "description": "Suburb",
+      "score": 0.9669337,
+      "topicality": 0.9669337
+    },
+    {
+      "mid": "/m/08863x",
+      "description": "Bird's-eye view",
+      "score": 0.88717663,
+      "topicality": 0.88717663
+    },
+    {
+      "mid": "/m/0d9wj",
+      "description": "Urban design",
+      "score": 0.8673409,
+      "topicality": 0.8673409
+    },
+    {
+      "mid": "/m/05wkw",
+      "description": "Photography",
+      "score": 0.8040625,
+      "topicality": 0.8040625
+    },
+    {
+      "mid": "/m/02cwm",
+      "description": "Design",
+      "score": 0.73012,
+      "topicality": 0.73012
+    },
+    {
+      "mid": "/m/0hwky",
+      "description": "Pattern",
+      "score": 0.70671785,
+      "topicality": 0.70671785
+    },
+    {
+      "mid": "/m/025s3q0",
+      "description": "Landscape",
+      "score": 0.7008891,
+      "topicality": 0.7008891
+    },
+    {
+      "mid": "/m/0180xr",
+      "description": "Neighbourhood",
+      "score": 0.6886567,
+      "topicality": 0.6886567
+    }
+  ]
+}
