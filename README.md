@@ -35,7 +35,7 @@ Operating to solve the problem for a housing society, we just considered rainwat
 ### Cost benefit analysis to justify the plan
 The capital cost is invested by the shareholders. The maintainance and the operational cost is divided amongst the beneficiaries *based on their demand of water*. It is calculated using YAS algorithm. YAS algorithm is also used to find the break even point for our rainwater harvesting model. The script is present in Reservoir Optimization folder. 
 
-![](NPV vs Time.png)
+![](data/NPV vs Time.png)
 
 
 ### Calculating water demand
