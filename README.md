@@ -35,7 +35,7 @@ Operating to solve the problem for a housing society, we just considered rainwat
 ### Cost benefit analysis to justify the plan
 The capital cost is invested by the shareholders. The maintainance and the operational cost is divided amongst the beneficiaries *based on their demand of water*. It is calculated using YAS algorithm. YAS algorithm is also used to find the break even point for our rainwater harvesting model. The script is present in Reservoir Optimization folder. 
 
-![](data/NPV_vs_Time.png)
+![](data/NPV_vs_Time_FINAL_.png)
 
 
 ### Calculating water demand
@@ -67,4 +67,5 @@ Optimality of water tank placement is determined by clustering of the colour fil
 ### Web Application Development
 Web Application is developed using Django framework in python. The web application two authority level - Admin and User.
 Admin has access to all the development and application rights like getting the optimum values for the tank placements, rainwater prediction, catchment area estimation, cost benefit analysis and estimated break even points. 
-![]()
+![](data/Screenshot%20(34).png)
+
