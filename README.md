@@ -67,4 +67,4 @@ Optimality of water tank placement is determined by clustering of the colour fil
 ### Web Application Development
 Web Application is developed using Django framework in python. The web application two authority level - Admin and User.
 Admin has access to all the development and application rights like getting the optimum values for the tank placements, rainwater prediction, catchment area estimation, cost benefit analysis and estimated break even points. 
-![]()
+![](data/Screenshot%20(34).png)
