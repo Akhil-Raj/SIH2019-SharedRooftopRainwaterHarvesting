@@ -4,6 +4,7 @@ from point import Point
 import csv
 from opencvPrac import canny2
 import cv2
+from elbow import find_k
 
 geo_locs = []
 #loc_ = Point(0.0, 0.0)  #tuples for location
@@ -12,6 +13,9 @@ geo_locs = []
 #f = open('/home/kazem/Downloads/Hackathon/drinkingFountains.csv', 'r')
 #reader = csv.reader(f, delimiter=",")
 reader = canny2()
+reader = reader[0]
+k = find_k(reader) + 2
+
 
 for line in reader:
     #print(line)
@@ -21,7 +25,7 @@ for line in reader:
 #for p in geo_locs:
 #    print "%f %f" % (p.latit, p.longit)
 #let's run k_means clustering. the second parameter is the no of clusters
-cluster = clustering(geo_locs, 6)
+cluster = clustering(geo_locs, k)
 flag = cluster.k_means(False)
 if flag == -1:
     print("Error in arguments!")
@@ -41,12 +45,13 @@ for i in cluster.clusters:
         tempy += j.longit
     means += [[int(tempx / num), int(tempy / num)]]
 
-for i in range(6):
+for i in range(k):
     print("mean " + str(i) + ": " + str(means[i]))
 
-img = cv2.imread("sat.png")
-for i in range(6):
-    cv2.circle(img, (means[i][0], means[i][1]), 5, (255, 0, 0), -1)
-cv2.imwrite("imageToShow2.png", img)
+img = cv2.imread("static/openstreetmap2dplotFinal.PNG")
+for i in range(k):
+    cv2.circle(img, (means[i][0], means[i][1]), 5, (0, 255, 0), -1)
+    cv2.putText(img,'Tank ' + str(i + 1),(means[i][0], means[i][1]), cv2.FONT_HERSHEY_COMPLEX, 1 ,(0 , 0, 0),1,cv2.LINE_AA)
+cv2.imwrite("originalImageWithTanks.png", img)
 #cv2.imshow("img", img)
 #cv2.waitKey(0)

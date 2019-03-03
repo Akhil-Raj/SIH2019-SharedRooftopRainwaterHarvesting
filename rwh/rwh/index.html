@@ -102,10 +102,10 @@
         </div>
         <div class="card-footer" id="area" style="font-size: 12px">
           {% load static %}
-          <form method="post" id="gis" enctype="multipart/form-data" action="/area/">
+          <form method="post" id="gis" enctype="multipart/form-data" >
             {% csrf_token %}
             <input type="file" id="catchFile">
-            <button class="btn btn-primary" onclick="hide()"> Submit </button>
+            <button class="btn btn-primary" onclick="hide(event)"> Submit </button>
           </form>
         </div>
 
@@ -159,21 +159,21 @@ function changeSpeed(e,item) {
   var speed = 2000; //time, in milliseconds, for the scroll action to complete.  
   $('html, body').animate({scrollTop: elementpos+ 'px'}, speed); //animate the scroll.
 };
-function hide(){
+function hide(event){
   event.preventDefault();
-  var input= $("#cannyFile").val();
+  var input= $("#catchFile").val();
   var file = input.split("\\");
   var fileName = file[file.length-1];
-  console.log(fileName);
   $('#gis').css("display","none");
-  $('#catch1').attr('src','static/openstreetmap2dplotFinal.png');
-  $('#catch2').attr('src','static/originalImageWithTanks.png');
-  $('#catch1').width(600);
-  $('#catch1').height(400);
-  $('#catch2').width(600);
-  $('#catch2').height(400);
-  $("#catch1").show();
-  $("#catch2").show();
+  $.ajax(
+    {url: "area/", 
+    type: 'GET',
+    data: {filename:fileName} ,
+    contentType: 'application/json;',
+    success: function(result){
+      $("#area").html('<span style="font-size:1.2em">'+result+'</span>');
+    }
+  });
 }
 
 function cannyDetect(event){
@@ -189,8 +189,8 @@ function cannyDetect(event){
     contentType: 'application/json;',
     success: function(result){
       $('#cannyForm').css("display","none");
-      $('#cannyImage').attr('src','static/imageToShow.png');
-      $('#cannyImage1').attr('src','static/imageToShow2.png');
+      $('#cannyImage').attr('src','static/originalImageWithTanks.png');
+      $('#cannyImage1').attr('src','static/openstreetmap2dplotFinal.png');
       $('#cannyImage').width(600);
       $('#cannyImage').height(400);
       $('#cannyImage1').width(600);
