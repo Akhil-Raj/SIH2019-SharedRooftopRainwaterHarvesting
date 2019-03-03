@@ -333,18 +333,20 @@ def canny():
             break
 
 def canny2():
-    cv2.namedWindow('img')
+    #cv2.namedWindow('img')
     cv2.namedWindow('origImg')
-    imgOrig = cv2.imread('/home/akhil/Desktop/final1.png')
+    imgOrig = cv2.imread('/media/akhil/Code/SIH/GS-PS/presentationThings/finalPresentation/onlyBuilding.jpg')
     imgOrig = cv2.resize(imgOrig, (500, 500))
     img = cv2.cvtColor(imgOrig, cv2.COLOR_RGB2GRAY)
-    prImg(img, 'origImg', time=1)
+    prImg(img, 'origImg', time=0)
     edges = cv2.Canny(img, 100, 200)
     canny = cv2.Canny(img, 40, 500)
     #prImg(canny)
+    #print("SSSSSS")
     im2, contours, hierarchy = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     points = []
-
+    catchmentArea = 0
+    print(contours)
     for c in contours:
         # calculate moments for each contour
         M = cv2.moments(c)
@@ -356,19 +358,22 @@ def canny2():
             points.append([cX, cY])
         else:
             cX, cY = 0, 0
+        catchmentArea += cv2.contourArea(c)
         cv2.circle(imgOrig, (cX, cY), 3, (0, 0, 0), -1)
         #cv2.putText(imgOrig, "", (cX - 25, cY - 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
         # display the image
+    #print("SSSSSSSSSSSS")
+    #print("catchmentArea : " + str(catchmentArea))
     #cv2.imshow("Image", img)
     #cv2.waitKey(0)
     #mx, my = np.mean(points, 0)
     #cv2.circle(imgOrig, (int(mx), int(my)), 5, (0, 255, 0), -1)
     #cv2.putText(img, "Mean", (cX - 25, cY - 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
-    #cv2.imshow("Image", imgOrig)
-    #cv2.imwrite("imageToShow.png", imgOrig)
-    #cv2.waitKey(0)
-    return points
+    cv2.imshow("Image", imgOrig)
+    cv2.imwrite("imageWithClusters.png", imgOrig)
+    cv2.waitKey(0)
+    return (points, catchmentArea)
 
 def cannyAndContours():
     cv2.namedWindow('img')
@@ -539,5 +544,5 @@ if __name__ == '__main__':
     #contours1()
     #contours2()
     #contours3()
-    #canny2()
-    cannyAndContours()
+    canny2()
+    #cannyAndContours()
