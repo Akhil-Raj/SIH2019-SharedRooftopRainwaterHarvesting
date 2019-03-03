@@ -40,6 +40,9 @@ We can get the water demand of the area from the responsible water supply body. 
 
 ### Water tank placement and optimization of tank capacity
 Optimality of water tank placement is determined by clustering of the colour filtered and segmented greyscale image of the map provided. This is done to reduce the pipe laying out cost for collection and distribution of water. While placing the tank, we consider the underground map (consisting of various piping systems, electricity lines etc. ) and construct the tank nearest plausible area to the cluster centers found. 
+![](2dplotFINAL2.PNG)
+![](onlyBuilding.jpg)
+![](imageWithClusters.png)
 
 ### Plan for cost incurment of cost for the parties involved
 - Who will invest (Upfront Capital Investment) 
