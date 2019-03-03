@@ -334,6 +334,7 @@ def canny():
 
 def canny2():
     #cv2.namedWindow('img')
+    #print("SSSSSSSSSSSSSSSS")
     cv2.namedWindow('origImg')
     imgOrig = cv2.imread('/media/akhil/Code/SIH/GS-PS/presentationThings/finalPresentation/onlyBuilding.jpg')
     imgOrig = cv2.resize(imgOrig, (500, 500))
@@ -346,7 +347,7 @@ def canny2():
     im2, contours, hierarchy = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     points = []
     catchmentArea = 0
-    print(contours)
+    #print(contours)
     for c in contours:
         # calculate moments for each contour
         M = cv2.moments(c)
@@ -364,8 +365,7 @@ def canny2():
 
         # display the image
     #print("SSSSSSSSSSSS")
-    #print("catchmentArea : " + str(catchmentArea))
-    #cv2.imshow("Image", img)
+    cv2.imshow("Image", img)
     #cv2.waitKey(0)
     #mx, my = np.mean(points, 0)
     #cv2.circle(imgOrig, (int(mx), int(my)), 5, (0, 255, 0), -1)
@@ -373,6 +373,7 @@ def canny2():
     cv2.imshow("Image", imgOrig)
     cv2.imwrite("imageWithClusters.png", imgOrig)
     cv2.waitKey(0)
+    print("catchmentArea : " + str(catchmentArea))
     return (points, catchmentArea)
 
 def cannyAndContours():
