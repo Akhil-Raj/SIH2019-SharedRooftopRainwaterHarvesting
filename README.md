@@ -21,9 +21,11 @@ The complete solution is presented in the form of an end to end web application 
 
 ### Rainfall Prediction
 For rainfall prediction, we use daily historical rainfall data to train our LSTM model, as it can very well preserve the long term dependencies and relationships given it's architecture. 
-**Tools/Resources Used: ** Python 3 ( pandas, numpy, keras etc.). 
-**Result: ** It estimates amount of rainfall for the next time period given (in *mm* of rainfall)
-![](Rainfall_prediction.png)
+
+**Tools/Resources Used:** Python 3 ( pandas, numpy, keras etc.). 
+
+**Result:** It estimates amount of rainfall for the next time period given (in *mm* of rainfall)
+![](data/Rainfall_prediction.png)
 
 ### Catchment Area Estimation
 Operating to solve the problem for a housing society, we just considered rainwater from rooftops for the estimation. Given the map input in the web application, we estimate the catchment area by segmenting the image by canny edge detection. Given the area coverage of the map, we estimate the area of rooftops and hence we get the amount of water we are going to get by
@@ -51,3 +53,4 @@ Optimality of water tank placement is determined by clustering of the colour fil
 Web Application is developed using Django framework in python. The web application two authority level - Admin and User.
 Admin has access to all the development and application rights like getting the optimum values for the tank placements, rainwater prediction, catchment area estimation, cost benefit analysis and estimated break even points. 
 ![]()
+
