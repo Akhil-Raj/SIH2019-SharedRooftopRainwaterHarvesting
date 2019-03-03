@@ -35,15 +35,26 @@ Operating to solve the problem for a housing society, we just considered rainwat
 ### Cost benefit analysis to justify the plan
 The capital cost is invested by the shareholders. The maintainance and the operational cost is divided amongst the beneficiaries *based on their demand of water*. It is calculated using YAS algorithm. YAS algorithm is also used to find the break even point for our rainwater harvesting model. The script is present in Reservoir Optimization folder. 
 
+![](NPV vs Time.png)
+
 
 ### Calculating water demand
 We can get the water demand of the area from the responsible water supply body. Here we collect the timely demands of water from various households through the web application. The user logs in to check his/her use and place a demand of water for the next time period. The payment for the service is distributed into various households, proportional to their demand/use. 
 
 ### Water tank placement and optimization of tank capacity
 Optimality of water tank placement is determined by clustering of the colour filtered and segmented greyscale image of the map provided. This is done to reduce the pipe laying out cost for collection and distribution of water. While placing the tank, we consider the underground map (consisting of various piping systems, electricity lines etc. ) and construct the tank nearest plausible area to the cluster centers found. 
-| 2D plot                    | Building Countours         | Cluster Center                  |
-|----------------------------|----------------------------|---------------------------------|
-| ![](data/2dplotFINAL2.PNG) | ![](data/onlyBuilding.jpg) | ![](data/imageWithClusters.png) |
+
+**2D PLOT projection**
+
+![](data/2dplotFINAL2.PNG)
+
+**Building Contours**
+
+![](data/onlyBuilding.jpg) 
+
+**Centroids of Catchment Area (Building)**
+
+![](data/imageWithClusters.png)
 
 ### Plan for cost incurment of cost for the parties involved
 - Who will invest (Upfront Capital Investment) 
@@ -57,5 +68,3 @@ Optimality of water tank placement is determined by clustering of the colour fil
 Web Application is developed using Django framework in python. The web application two authority level - Admin and User.
 Admin has access to all the development and application rights like getting the optimum values for the tank placements, rainwater prediction, catchment area estimation, cost benefit analysis and estimated break even points. 
 ![]()
-
-
